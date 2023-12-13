@@ -1,0 +1,64 @@
+﻿@using website_tim_viec_lam.Models;
+@model IList<Customer>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h2>Danh Sách Người Dùng</h2>
+    </div>
+
+    <p>
+        <a type="button" class="btn btn-success" asp-area="Admin" asp-controller="Customer" asp-action="Create">
+            <i class="bi bi-file-earmark-text me-1"></i>Thêm Người Dùng
+        </a>
+    </p>
+
+    <section class="section dashboard">
+        <div class="row">
+            <div class="col-12">
+                <div class="card recent-sales overflow-auto">
+                    <div class="card-body mt-4">
+                        <table class="table table-borderless datatable">
+                            <thead>
+                                <tr>
+                                    <th class="col-1 text-center">#</th>
+                                    <th class="col-3 left-center">Họ Và Tên</th>
+                                    <td class="col-2 text-center">Gmail</td>
+                                    <td class="col-2 text-center">Số Điện Thoại</td>
+                                    <td class="col-1 text-center">Số Căn Cước</td>
+                                    <td class="col-1 text-center">Địa Chỉ</td>
+                                    <th class="col-2 text-center">Chức năng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th class="text-center" scope="row">@item.CustomerID</th>
+                                        <td>
+                                            <a asp-area="Admin" asp-controller="Post" asp-action="Details"
+                                               asp-route-id="@item.CustomerID" class="text-primary">@item.FullName</a>
+                                        </td>
+                                        <td class="text-center">@item.Email</td>
+                                        <td class="text-center">@item.Phone</td>
+                                        <td class="text-center">@item.CCCD</td>
+                                        <td class="text-center">@item.Address</td>
+                                        <td class="text-center">
+                                            <a asp-area="Admin" asp-controller="Customer" asp-action="Edit"
+                                               asp-route-id="@item.CustomerID" class="btn btn-primary btn-sm"
+                                               title="Sửa Thông Tin Người Dùng"><i class="bi bi-pencil"></i></a>
+                                            <a asp-area="Admin" asp-controller="Customer" asp-action="Delete"
+                                               asp-route-id="@item.CustomerID" class="btn btn-danger btn-sm"
+                                               title="Xóa Thông Tin Người Dùng"><i class="bi bi-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

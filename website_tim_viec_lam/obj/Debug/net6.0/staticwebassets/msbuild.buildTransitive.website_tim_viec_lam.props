@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\website_tim_viec_lam.props" />
+</Project>
